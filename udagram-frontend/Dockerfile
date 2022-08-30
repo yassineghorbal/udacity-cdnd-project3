@@ -3,11 +3,9 @@ FROM beevelop/ionic:latest AS ionic
 ## Créer le répertoire de l'application
 WORKDIR /usr/src/app
 # Installer les dépendances de l'application
-RUN npm i -g @angular/cli
 # Un joker est utilisé pour s'assurer que package.json ET package-lock.json sont copiés.
 COPY package*.json ./
-RUN npm install --silent
-# Lancez npm ci
+RUN npm ci
 # Regroupement des sources de l'application
 COPY . .
 RUN ionic build
